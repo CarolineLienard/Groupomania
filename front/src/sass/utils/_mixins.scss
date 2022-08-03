@@ -1,0 +1,42 @@
+                                    // Responsive mixins //
+  @mixin mobile-small-only {
+    @media screen and (max-width: map-get($breakpoints, mobile-small)){
+        @content;
+    }
+  } 
+
+  @mixin mobile-only {
+      @media screen and (max-width: map-get($breakpoints, mobile)){
+          @content;
+      }
+    }
+
+  @mixin ipad-small-only {
+    @media screen and (max-width: map-get($breakpoints, ipad-small)){
+        @content;
+    }
+  }
+
+  @mixin ipad-only {
+    @media screen and (max-width: map-get($breakpoints, ipad)){
+        @content;
+    }
+  }
+
+  @mixin ipad-Xsmall-only {
+    @media screen and (max-width: map-get($breakpoints, ipad-Xsmall)){
+        @content;
+    }
+  }
+
+  @mixin desktop-small-only {
+    @media screen and (max-width: map-get($breakpoints, desktop)){
+        @content;
+    }
+  }
+
+  @mixin desktop-only {
+    @media screen and (max-width: map-get($breakpoints, desktop)){
+        @content;
+    }
+  }
