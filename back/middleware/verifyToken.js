@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 module.exports = function auth(req, res, next) {
 
     //Checking if the token exist
-    const token = req.headers.authorization.split(' ')[1]
+    const token = req.headers.authorization.split(' ')[0]
     if(!token) return res.status(401).send('Access Denied')
 
     //Verify the token

@@ -1,0 +1,31 @@
+body {
+    background: $background;
+    font-family: "Roboto", sans-serif;
+}
+
+.filter {
+    color: $dark-grey;
+    justify-content: flex-end;
+}
+
+//Flex 
+
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.between {
+    justify-content: space-between;
+}

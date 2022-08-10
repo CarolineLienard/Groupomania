@@ -1,4 +1,4 @@
-const Sauce = require('../model/Post')
+const Post = require('../model/Post')
 const fs = require('fs'); // Node module for images
 
 
@@ -8,9 +8,6 @@ exports.createPost = async (req, res, next) => {
 
     // Create an object with req.body
     const postObject = JSON.parse(req.body.post)
-
-    // Let Mongo DB create the post ID by deleting the default one
-    delete postObject._id;
 
     // Create a new post
     const post = new Post({
@@ -23,10 +20,10 @@ exports.createPost = async (req, res, next) => {
     })
     // Save the post and send the response
     try {
-      const savedPost = await post.save()
+      post.save()
       res.send({message: "Post créé"})
     } catch(err) {
-          res.status(404).send(err)
+          res.status(401).send(err)
     }
 }
 
@@ -171,5 +168,32 @@ exports.likePost = (req, res, next) => {
         .catch((error) => res.status(400).json({
           error
         }))
+    }
+
+    // Update like or dislike
+    if (like === 0) {
+      Post.findOne({
+          _id: postId
+        })
+        .then((post) => {
+          if (post.usersLiked.includes(userId)) { 
+            Post.updateOne({
+                _id: postId
+              }, {
+                $pull: {
+                  usersLiked: userId
+                },
+                $inc: {
+                  likes: -1
+                }
+              })
+              .then(() => res.status(200).json({
+                message: '-1 like'
+              }))
+              .catch((error) => res.status(400).json({
+                error
+              }))
+            }
+          })
     }
 }                              

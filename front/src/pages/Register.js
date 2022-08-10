@@ -1,0 +1,69 @@
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Logo from '../assets/logo.svg'
+import { createUser } from '../API/auth'
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+
+
+export default function Register(){
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [openSnackBar, setOpenSnackBar] = useState(false)
+    const [errors] = useState("Something wrong")
+    let navigate = useNavigate();
+
+
+    function submitRegisteration(){
+        if(email !== "" && password !== ""){
+            const user = {
+                email: email,
+                password: password
+            }
+            createUser(user).then((res) => {
+                if(res && res.message){
+                    navigate('/login', { replace: true })
+                }else{
+                    setOpenSnackBar(true)
+                }
+            }).catch((err) => { console.log(err, 'err')})
+        }
+    }
+
+    function handleSnackBar(){
+        return(
+            <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={() => setOpenSnackBar(false)}>
+                <Alert severity= "error">{errors}</Alert>
+            </Snackbar>
+        )
+    }
+
+
+    return(
+        <div className="login-page flex column">
+            <div className="form flex align-center justify-center column">
+                
+                <img src={Logo} alt=""/>
+                
+                <div className="inputs flex column">
+                    <div className="email-input">
+                        <span>Email</span>
+                        <input type="text" placeholder="" onChange={(e) => {setEmail(e.target.value)}}/>
+                    </div>
+
+                    <div className="pass-input">
+                        <span>Password</span>
+                        <input type="password" placeholder="" onChange={(e) => {setPassword(e.target.value)}}/>
+                    </div>
+                </div>
+                
+
+                <div className="button flex align-center column">
+                    <button disabled={email === "" && password === ""} onClick={submitRegisteration}>Sign up</button>
+                    <p className="message">You already have an account?<Link to="/login"> Sign in</Link></p>
+                </div>
+            </div>
+            {handleSnackBar()}
+        </div>
+    )
+}

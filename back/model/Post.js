@@ -8,8 +8,6 @@ const postSchema = new mongoose.Schema({
     description: {
         type: String, 
         required: true,
-        max: 1024,
-        min: 6
     },
     imageUrl: {
         type: String, 

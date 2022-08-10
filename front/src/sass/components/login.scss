@@ -1,0 +1,54 @@
+.login-page {
+  margin: 5em auto;
+  max-width: 50%;
+  span {
+    color: $grey;
+    margin-left: 1rem;
+  }
+  p {
+    color: $grey;
+    margin: 0;
+  }
+  a {
+    color: $red;
+    text-decoration: none;
+  }
+  .form {
+    background: $light;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 5rem 10rem;
+    gap: 3rem;
+    .inputs {
+      width: 100%;
+      gap: 1rem;
+      input {
+        width: 100%;
+        border: 1px solid $grey;
+        border-radius: 50px;
+        padding: 15px;
+        &:focus {
+          outline: 0;
+          caret-color: $red;
+        }
+      }
+    }
+    .button {
+      width: 100%;
+      gap: 0.5rem;
+      button {
+        background: $red;
+        color: $light;
+        border-radius: 50px;
+        width: 40%;
+        border: 0;
+        padding: 15px;
+        cursor: pointer;
+        &:hover {
+          background: $red;
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+}

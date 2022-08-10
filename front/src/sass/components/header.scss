@@ -1,0 +1,23 @@
+.header {
+    background-color: $light;
+    padding: 1em;
+    .logo {
+        width: 19%;
+    }
+    .nav {
+        gap: 2.5rem;
+        a {
+            text-decoration: none;
+            color: $dark-grey;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            color: $red;
+        }
+    }
+}
+
+
+
