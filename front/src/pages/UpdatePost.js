@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { updatePost, getOnepost } from '../API/post';
+import Header from '../components/Header'
+
 
 export default function UpdatePost() {
     const { postId } = useParams();
@@ -22,7 +23,6 @@ export default function UpdatePost() {
             setImagePost(res[0].imageUrl)
         })
     }, [])
-
 
 
     function update(){
@@ -44,25 +44,38 @@ export default function UpdatePost() {
 
     return (
         <div>
-            <h1>Update a post</h1>
-            <Link to="/homepage"><ArrowBackIcon /></Link>
-            <TextField 
-                id="description" 
-                label="outlined" 
-                variant="outlined" 
-                value={post}
-                onChange={handleDescription}
-            />
-            {
-                imagePost && (
-                    <img src={imagePost} height={113}/>
-                )
-            }
-            <IconButton color="primary" aria-label="upload picture" component="label" onChange={handlePicture}>
-                <input hidden accept="image/*" type="file" />
-                <PhotoCamera />
-            </IconButton>
-            <button onClick={update}>Modifier</button>
-        </div>
+            <Header />
+            
+            <div className='addPost flex column'>
+                
+                <div className='postContent flex'>
+                    <div className='addImg flex column align-center justify-center text-center'>
+                        <div className='postTitle flex align-center justify-center column'>
+                            <IconButton className="material-icons red" color="primary" aria-label="upload picture" component="label">
+                                <input hidden accept="image/*" type="file" onChange={handlePicture}/>
+                                <PhotoCamera />
+                            </IconButton>
+                            <h1>Cliquez pour télécharger la photo depuis votre appareil</h1>
+                        </div>
+                        <span>Recommandation: Utilisez des fichiers .jpg de haute qualité de moins de 20mo.</span>
+                    </div>
+                    
+                    <TextField
+                    id="standard-multiline-static"
+                    multiline
+                    fullWidth
+                    maxRows={10}
+                    helperText="60 caractères maximum"
+                    placeholder="Commencer votre post"
+                    variant="standard"
+                    onChange={handleDescription}
+                    />
+                </div>
+            
+                <div className='postButton flex end'>
+                    <button onClick={update}>Enregistrer</button>
+                </div>    
+            </div>
+        </div>    
     )
 }

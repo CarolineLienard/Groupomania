@@ -30,17 +30,19 @@ export default function HomePage(){
     return (
         <div>
             <Header />
-            <div className="filter flex">
-                <span className='flex align-center'>Lastest<KeyboardArrowDownIcon/></span>
-            </div>
-            <div>
-            {
-                listPosts && listPosts.map((post) => (
-                    <div key={post._id}>
-                        <Post post={post} refreshPost={handlePosts} userId={storage.userId}/>
-                    </div>
-                ))
-            }
+            <div className='mainContainer flex column'>
+                <div className="filter flex">
+                    <span className='flex align-center'>Lastest<KeyboardArrowDownIcon/></span>
+                </div>
+                <Grid container spacing={2}>
+                {
+                    listPosts && listPosts.map((post) => (
+                        <Grid item xs={3} key={post._id}>
+                            <Post post={post} refreshPost={handlePosts} userId={storage.userId}/>
+                        </Grid>
+                    ))
+                }
+                </Grid>
             </div>
         </div>
     )

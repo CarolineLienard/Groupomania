@@ -3,10 +3,67 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
-.filter {
-    color: $dark-grey;
-    justify-content: flex-end;
+
+// Homepage
+
+.mainContainer {
+    padding: 3.5em;
+    gap: 1.5rem;
+    .filter {
+        color: $dark-grey;
+        justify-content: flex-end;
+    }
 }
+
+
+//AddPost 
+
+.addPost {
+    margin: 5em auto;
+    max-width: 50%;
+    background-color: $light;
+    width: fit-content;
+    padding: 2rem;
+    border-radius: 5px;
+    .postButton {
+        button {
+            background-color: $red;
+            border: none;
+            color: $light;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            width: fit-content;
+        }
+    }
+    .postContent {
+        gap: 2rem;
+        margin-bottom: 0rem;
+        .addImg {
+            background-color: $background;
+            border-radius: 5px;
+            padding: 2rem;
+            width: 65%;
+            .postTitle {
+                width: 80%;
+                margin: 5rem 0rem;
+                h1 {
+                    font-size: 1rem;
+                    font-weight: 400;
+                }
+            }
+            span {
+                color: $dark-grey;
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+.css-g9cew8-MuiInputBase-root-MuiInput-root:after {
+    border-color: transparent!important;
+}
+
+
 
 //Flex 
 
@@ -18,8 +75,16 @@ body {
     align-items: center;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .justify-center {
     justify-content: center;
+}
+
+.end {
+    justify-content: flex-end;
 }
 
 .column {

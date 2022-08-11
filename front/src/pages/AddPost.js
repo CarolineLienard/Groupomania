@@ -1,10 +1,10 @@
 import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { Link, useNavigate } from "react-router-dom"
 import { useState } from 'react'
 import { addUserPost } from '../API/post'
+import { Link, useParams, useNavigate } from "react-router-dom";
+import Header from '../components/Header'
 
 export default function AddPost() {
     const [post, setPost] = useState('')
@@ -28,14 +28,39 @@ export default function AddPost() {
     
     return (
         <div>
-            <h1>Add a post</h1>
-            <Link to="/homepage"><ArrowBackIcon /></Link>
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={(e) => {setPost(e.target.value)}}/>
-            <IconButton color="primary" aria-label="upload picture" component="label">
-                <input hidden accept="image/*" type="file" onChange={handlePicture}/>
-                <PhotoCamera />
-            </IconButton>
-            <button onClick={onSubmit}>Post</button>
-        </div>
+            <Header />
+          
+            <div className='addPost flex column'>
+                
+                <div className='postContent flex'>
+                    <div className='addImg flex column align-center justify-center text-center'>
+                        <div className='postTitle flex align-center justify-center column'>
+                            <IconButton className="material-icons red" color="primary" aria-label="upload picture" component="label">
+                                <input hidden accept="image/*" type="file" onChange={handlePicture}/>
+                                <PhotoCamera />
+                            </IconButton>
+                            <h1>Cliquez pour télécharger la photo depuis votre appareil</h1>
+                        </div>
+                        <span>Recommandation: Utilisez des fichiers .jpg de haute qualité de moins de 20mo.</span>
+                    </div>
+                    
+                    <TextField
+                    id="standard-multiline-static"
+                    multiline
+                    fullWidth
+                    maxRows={10}
+                    helperText="60 caractères maximum"
+                    placeholder="Commencer votre post"
+                    variant="standard"
+                    onChange={(e) => {setPost(e.target.value)}}
+                    />
+                </div>
+
+                <div className='postButton flex end'>
+                    <button onClick={onSubmit}>Enregistrer</button>
+                </div>    
+            </div>
+
+        </div>    
     )
 }

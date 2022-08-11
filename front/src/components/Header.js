@@ -12,7 +12,7 @@ export default function Header() {
 
     return(
         <div className="header flex align-center between">
-            <img src={Logo} alt="" className="logo" />
+            <Link to="/homepage"><img src={Logo} alt="" className="logo" /></Link>
             <div className="nav flex">            
                 <Link to="/AddPost">Ajouter un post</Link>
                 <button onClick={logOut}>Se déconnecter</button>

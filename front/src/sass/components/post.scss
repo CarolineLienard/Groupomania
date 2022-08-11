@@ -1,6 +1,25 @@
-.post-card {
-    background-color: red;
+.postContainer {
+    gap: 2rem;
+    flex-wrap: wrap;
 }
-.post-card__image{
-    height: 100px
+
+.post {
+    width: 23%;
+}
+
+.post-card {
+    background-color: $light;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.post-card__image {
+    width: 100%;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.post-card__content {
+    gap: 1rem;
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+    line-height: 23px;
 }

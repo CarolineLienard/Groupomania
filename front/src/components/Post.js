@@ -27,30 +27,30 @@ export default function Post({post, refreshPost, userId}){
 
             <img className='post-card__image' alt={'coucou'} src={post.imageUrl}/>
 
-            <div className="post-card__content">
+            <div className="post-card__content flex column">
                 <div className="post-card__content--text">
                     <p>{post.description}</p>
                 </div>
 
-                <div className="post-card__content--interact">
-                    <div className="like">
-                        <IconButton aria-label="like" size="small" onClick={handleLike}>
+                <div className="post-card__content--interact flex between">
+                    <div className="like material-icons grey">
+                        <IconButton className="material-icons grey" aria-label="like" size="small" onClick={handleLike}>
                             {
                                 arrayLikes.includes(userId) ? <ThumbUpIcon/> : <ThumbUpOffAltIcon />
                             }
                         </IconButton>
-                        <span>Nombre de like : {post.likes}</span>
+                        <span>{post.likes}</span>
                     </div>
                     
                     {
                         isOwner && (
                             <div className="more">
                                 <Link to={`/updatePost/${post._id}`}>
-                                    <IconButton aria-label="delete" size="small">
+                                    <IconButton className="material-icons grey" aria-label="delete" size="small">
                                         <Edit />
                                     </IconButton>
                                 </Link>
-                                <IconButton aria-label="delete" size="small" onClick={removePost}>
+                                <IconButton className="material-icons grey" aria-label="delete" size="small" onClick={removePost}>
                                     <DeleteIcon />
                                 </IconButton>
                             </div>
