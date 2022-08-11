@@ -6,8 +6,10 @@ import Edit from '@mui/icons-material/Edit';
 import { Link } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
 import {remove, likePost} from '../API/post';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
 
-export default function Post({post, refreshPost, userId}){
+export default function Post({post, refreshPost, userId, index}){
     const arrayLikes = post.usersLiked
     const [storage] = useState(JSON.parse(localStorage.getItem('session')))
 
@@ -23,42 +25,46 @@ export default function Post({post, refreshPost, userId}){
     }
 
     return(
-       <div className="post-card">
-
-            <img className='post-card__image' alt={'coucou'} src={post.imageUrl}/>
-
-            <div className="post-card__content flex column">
+       <ImageListItem className="post-card" key={index}>
+            <img 
+                className='post-card__image'
+                alt={'coucou'} 
+                src={post.imageUrl}
+                srcSet={post.imageUrl}
+                loading="lazy"
+             />
+            <div className='post-card__content'>
                 <div className="post-card__content--text">
                     <p>{post.description}</p>
                 </div>
-
                 <div className="post-card__content--interact flex between">
-                    <div className="like material-icons grey">
-                        <IconButton className="material-icons grey" aria-label="like" size="small" onClick={handleLike}>
-                            {
-                                arrayLikes.includes(userId) ? <ThumbUpIcon/> : <ThumbUpOffAltIcon />
-                            }
-                        </IconButton>
-                        <span>{post.likes}</span>
-                    </div>
-                    
-                    {
-                        isOwner && (
-                            <div className="more">
-                                <Link to={`/updatePost/${post._id}`}>
-                                    <IconButton className="material-icons grey" aria-label="delete" size="small">
-                                        <Edit />
+                        <div className="like material-icons grey">
+                            <IconButton className="material-icons grey" aria-label="like" size="small" onClick={handleLike}>
+                                {
+                                    arrayLikes.includes(userId) ? <ThumbUpIcon/> : <ThumbUpOffAltIcon />
+                                }
+                            </IconButton>
+                            <span>{post.likes}</span>
+                        </div>
+                        
+                        {
+                            isOwner && (
+                                <div className="more">
+                                    <Link to={`/updatePost/${post._id}`}>
+                                        <IconButton className="material-icons grey" aria-label="delete" size="small">
+                                            <Edit />
+                                        </IconButton>
+                                    </Link>
+                                    <IconButton className="material-icons grey" aria-label="delete" size="small" onClick={removePost}>
+                                        <DeleteIcon />
                                     </IconButton>
-                                </Link>
-                                <IconButton className="material-icons grey" aria-label="delete" size="small" onClick={removePost}>
-                                    <DeleteIcon />
-                                </IconButton>
-                            </div>
-                        ) 
-                    }
-                    
+                                </div>
+                            ) 
+                        }
+                        
                 </div>
             </div>
-       </div>
+            
+       </ImageListItem>
     )
 }

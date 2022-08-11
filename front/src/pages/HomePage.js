@@ -3,8 +3,9 @@ import Header from '../components/Header'
 import {useNavigate} from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getAllPost } from '../API/post'
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import ImageList from '@mui/material/ImageList';
 
 
 export default function HomePage(){
@@ -23,7 +24,7 @@ export default function HomePage(){
 
     function handlePosts(){
         getAllPost().then(res => {
-            setListPost(res)
+            setListPost(res.reverse())
         })
     }
 
@@ -34,16 +35,20 @@ export default function HomePage(){
                 <div className="filter flex">
                     <span className='flex align-center'>Lastest<KeyboardArrowDownIcon/></span>
                 </div>
-                <Grid container spacing={2}>
-                {
-                    listPosts && listPosts.map((post) => (
-                        <Grid item xs={3} key={post._id}>
-                            <Post post={post} refreshPost={handlePosts} userId={storage.userId}/>
-                        </Grid>
-                    ))
-                }
-                </Grid>
+                <Box>
+                    <ImageList variant="masonry" cols={4} gap={30}>
+                    {
+                        listPosts && listPosts.map((post, index) => (
+                            <Post index={index} post={post} refreshPost={handlePosts} userId={storage.userId}/>
+                        ))
+                    }
+                    </ImageList>       
+                </Box>  
             </div>
         </div>
     )
 }
+
+
+
+

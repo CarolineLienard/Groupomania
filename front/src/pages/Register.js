@@ -59,8 +59,8 @@ export default function Register(){
                 
 
                 <div className="button flex align-center column">
-                    <button disabled={email === "" && password === ""} onClick={submitRegisteration}>Sign up</button>
-                    <p className="message">You already have an account?<Link to="/login"> Sign in</Link></p>
+                    <button disabled={email === "" && password === ""} onClick={submitRegisteration}>S'inscrire</button>
+                    <p className="message">Vous avez déjà un compte?<Link to="/login"> Se connecter</Link></p>
                 </div>
             </div>
             {handleSnackBar()}

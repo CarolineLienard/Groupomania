@@ -39,14 +39,14 @@ export default function Login(){
 
                     <div className="pass-input">
                         <span>Password</span>
-                        <input type="text" placeholder="" onChange={(e) => {setPassword(e.target.value)}}/>
+                        <input type="password" placeholder="" onChange={(e) => {setPassword(e.target.value)}}/>
                     </div>
                 </div>
                 
 
                 <div className="button flex align-center column">
-                    <button onClick={handleLogin}>Login</button>
-                    <p className="message">You don't have an account yet?<Link to="/register"> Sign up</Link></p>
+                    <button onClick={handleLogin}>Se connecter</button>
+                    <p className="message">Pas encore de compte?<Link to="/register"> Créez un compte</Link></p>
                 </div>
                 
             </div>

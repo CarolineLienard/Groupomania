@@ -73,7 +73,7 @@ export default function UpdatePost() {
                 </div>
             
                 <div className='postButton flex end'>
-                    <button onClick={update}>Enregistrer</button>
+                    <button onClick={update}>Modifier</button>
                 </div>    
             </div>
         </div>    

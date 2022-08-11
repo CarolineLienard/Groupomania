@@ -5,19 +5,16 @@ body {
 
 
 // Homepage
-
 .mainContainer {
     padding: 3.5em;
-    gap: 1.5rem;
+    gap: 1rem;
     .filter {
         color: $dark-grey;
         justify-content: flex-end;
     }
 }
 
-
 //AddPost 
-
 .addPost {
     margin: 5em auto;
     max-width: 50%;
@@ -33,6 +30,10 @@ body {
             padding: 1rem 2.5rem;
             border-radius: 30px;
             width: fit-content;
+            &:hover {
+                opacity: 0.9;
+                cursor: pointer;
+            }
         }
     }
     .postContent {
