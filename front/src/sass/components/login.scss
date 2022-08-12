@@ -1,6 +1,9 @@
 .login-page {
   margin: 5em auto;
   max-width: 50%;
+  img {
+    width: 90%;
+  }
   span {
     color: $grey;
     margin-left: 1rem;
@@ -18,7 +21,7 @@
     border-radius: 10px;
     width: fit-content;
     padding: 5rem 10rem;
-    gap: 3rem;
+    gap: 2rem;
     .inputs {
       width: 100%;
       gap: 1rem;
@@ -35,7 +38,8 @@
     }
     .button {
       width: 100%;
-      gap: 0.5rem;
+      gap: 1rem;
+      margin-top: 1em;
       button {
         background: $red;
         color: $light;

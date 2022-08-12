@@ -1,16 +1,24 @@
 import Post from '../components/Post'
 import Header from '../components/Header'
+import HeaderMobile from '../components/HeaderMobile'
+import MobileNav from '../components/MobileNav'
+
 import {useNavigate} from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getAllPost } from '../API/post'
-import Box from '@mui/material/Box';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import ImageList from '@mui/material/ImageList';
+import { useTheme } from '@mui/material/styles'
+
+import Box from '@mui/material/Box'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import ImageList from '@mui/material/ImageList'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 
 export default function HomePage(){
     const [storage] = useState(JSON.parse(localStorage.getItem("session")))
     const [listPosts, setListPost] = useState([])
+    const theme = useTheme()
+    const smallDevice = useMediaQuery(theme.breakpoints.down("sm"))
 
     let navigate = useNavigate()
 
@@ -31,12 +39,14 @@ export default function HomePage(){
     return (
         <div>
             <Header />
+            <HeaderMobile />
+            <MobileNav />
             <div className='mainContainer flex column'>
                 <div className="filter flex">
                     <span className='flex align-center'>Lastest<KeyboardArrowDownIcon/></span>
                 </div>
                 <Box>
-                    <ImageList variant="masonry" cols={4} gap={30}>
+                    <ImageList variant="masonry" cols={ smallDevice ? 1 : 4} gap={30}>
                     {
                         listPosts && listPosts.map((post, index) => (
                             <Post index={index} post={post} refreshPost={handlePosts} userId={storage.userId}/>

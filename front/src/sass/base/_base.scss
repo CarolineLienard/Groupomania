@@ -8,11 +8,44 @@ body {
 .mainContainer {
     padding: 3.5em;
     gap: 1rem;
+    @include mobile-only {
+        padding-top: 2em;
+    }
     .filter {
         color: $dark-grey;
         justify-content: flex-end;
+        @include mobile-only {
+            display: none;
+        }
     }
 }
+
+#mobileNav {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    display: none;
+    @include mobile-only {
+        display: flex;
+    }
+    .addButton {
+        text-decoration: none;
+        background-color: $red;
+        color: $light;
+        width: 100%;
+        padding: 1rem;
+    }
+    button {
+        border: none;
+        color: $red;
+        background-color: $light;
+        width: 100%;
+        padding: 1rem;
+        cursor: pointer;
+    }
+}
+
 
 //AddPost 
 .addPost {

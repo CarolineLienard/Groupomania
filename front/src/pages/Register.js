@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from '../assets/logo.svg'
 import { createUser } from '../API/auth'
 import Alert from '@mui/material/Alert';
@@ -10,8 +10,9 @@ export default function Register(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [openSnackBar, setOpenSnackBar] = useState(false)
-    const [errors] = useState("Something wrong")
+    const [errors, setErrors] = useState("Something wrong")
     let navigate = useNavigate();
+
 
 
     function submitRegisteration(){
@@ -21,12 +22,13 @@ export default function Register(){
                 password: password
             }
             createUser(user).then((res) => {
+                console.log(res, 'res')
                 if(res && res.message){
                     navigate('/login', { replace: true })
                 }else{
                     setOpenSnackBar(true)
                 }
-            }).catch((err) => { console.log(err, 'err')})
+            }).catch((err) => { console.log(err, 'errors')})
         }
     }
 
@@ -37,7 +39,6 @@ export default function Register(){
             </Snackbar>
         )
     }
-
 
     return(
         <div className="login-page flex column">
