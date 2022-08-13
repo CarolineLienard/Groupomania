@@ -18,7 +18,10 @@ You will need to use Express JS for the back end and React for the front. Your u
 
 ### Screenshot
 
-![](./src/assets/project.png)
+![](./images/project1.png)
+![](./images/project2.png)
+![](./images/project3.png)
+
 
 
 ### Built with
