@@ -19,6 +19,9 @@ export default function HomePage(){
     const [listPosts, setListPost] = useState([])
     const theme = useTheme()
     const smallDevice = useMediaQuery(theme.breakpoints.down("sm"))
+    const mediumDevice =  useMediaQuery(theme.breakpoints.down('md'))
+    const largeDevice =  useMediaQuery(theme.breakpoints.down('lg'))
+
 
     let navigate = useNavigate()
 
@@ -46,7 +49,7 @@ export default function HomePage(){
                     <span className='flex align-center'>Lastest<KeyboardArrowDownIcon/></span>
                 </div>
                 <Box>
-                    <ImageList variant="masonry" cols={ smallDevice ? 1 : 4} gap={30}>
+                    <ImageList variant="masonry" cols={ smallDevice ? 1 : mediumDevice ? 2 : largeDevice ? 3 : 4 } gap={30}>
                     {
                         listPosts && listPosts.map((post, index) => (
                             <Post index={index} post={post} refreshPost={handlePosts} userId={storage.userId}/>

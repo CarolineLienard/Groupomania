@@ -1,8 +1,18 @@
 .login-page {
   margin: 5em auto;
   max-width: 50%;
+  @include desktop-small {
+    max-width: 80%;
+  }
+  @include mobile-only {
+    max-width: 100%;
+    margin: 0;
+  }
   img {
     width: 90%;
+    @include mobile-only {
+      width: 100%;
+    }
   }
   span {
     color: $grey;
@@ -22,6 +32,13 @@
     width: fit-content;
     padding: 5rem 10rem;
     gap: 2rem;
+    @include mobile-only {
+      padding: 5rem;
+      height: 100%;
+      background-color: $background;
+      justify-content: center;
+      text-align: center;
+    }
     .inputs {
       width: 100%;
       gap: 1rem;
@@ -48,6 +65,9 @@
         border: 0;
         padding: 15px;
         cursor: pointer;
+        @include mobile-only {
+         width: 100%;
+        }
         &:hover {
           background: $red;
           opacity: 0.9;

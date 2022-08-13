@@ -1,11 +1,12 @@
+import Header from '../components/Header'
+import HeaderMobile from '../components/HeaderMobile'
+
 import { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { updatePost, getOnepost } from '../API/post';
-import Header from '../components/Header'
-
 
 export default function UpdatePost() {
     const { postId } = useParams();
@@ -45,6 +46,7 @@ export default function UpdatePost() {
     return (
         <div>
             <Header />
+            <HeaderMobile />
             
             <div className='addPost flex column'>
                 
