@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { updatePost, getOnepost } from '../API/post';
 
 export default function UpdatePost() {
@@ -14,14 +14,12 @@ export default function UpdatePost() {
     const [imagePost, setImagePost] = useState(null)
     let navigate = useNavigate()
 
-    const [storage] = useState(JSON.parse(localStorage.getItem('session')))
-
    // const isOwner = storage.userId === post.userId
 
     useEffect(() => {
         getOnepost(postId).then(res => {
-            setPost(res[0].description)
-            setImagePost(res[0].imageUrl)
+            setPost(res.description)
+            setImagePost(res.imageUrl)
         })
     }, [])
 
@@ -63,14 +61,15 @@ export default function UpdatePost() {
                     </div>
                     
                     <TextField
-                    id="standard-multiline-static"
-                    multiline
-                    fullWidth
-                    maxRows={10}
-                    helperText="60 caractères maximum"
-                    placeholder="Commencer votre post"
-                    variant="standard"
-                    onChange={handleDescription}
+                        id="standard-multiline-static"
+                        multiline
+                        fullWidth
+                        maxRows={10}
+                        helperText="60 caractères maximum"
+                        placeholder="Commencer votre post"
+                        variant="standard"
+                        value={post}
+                        onChange={handleDescription}
                     />
                 </div>
             

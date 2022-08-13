@@ -27,6 +27,7 @@ export default function AddPost() {
         setImagePost(e.target.files[0])
     }
 
+    console.log(imagePost);
     
     return (
         <div>
@@ -42,7 +43,12 @@ export default function AddPost() {
                                 <input hidden accept="image/*" type="file" onChange={handlePicture}/>
                                 <PhotoCamera />
                             </IconButton>
-                            <h1>Cliquez pour télécharger la photo depuis votre appareil</h1>
+                           
+                            <h1>
+                                {
+                                    imagePost ? imagePost.name : "Cliquez pour télécharger la photo depuis votre appareil"
+                                }
+                            </h1>
                         </div>
                         <span>Recommandation: Utilisez des fichiers .jpg de haute qualité de moins de 20mo.</span>
                     </div>

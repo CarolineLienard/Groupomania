@@ -25,21 +25,44 @@ export function updatePost(postId, post, image) {
     formData.append('image', image);
 
     const url = `http://localhost:3000/api/post/${postId}`
-    return fetch(
-        url, 
-        {
-            method: 'PUT',
-            headers: {
-                'Authorization': token.token,
-              },
-            body: formData
-        })
-        .then((response) => response.json())
-        .catch((error) => console.error(error))
+
+    console.log(post, 'post')
+
+    if(typeof image === 'string'){
+        return fetch(
+            url, 
+            {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': token.token,
+                  },
+                body: JSON.stringify(post)
+            })
+            .then((response) => response.json())
+            .catch((error) => console.error(error))
+    }else{
+        return fetch(
+            url, 
+            {
+                method: 'PUT',
+                headers: {
+                    'Authorization': token.token,
+                  },
+                body: formData
+            })
+            .then((response) => response.json())
+            .catch((error) => console.error(error))
+    }
+
+
+    
 }
 
 export function getOnepost(postId){
-    const url = 'http://localhost:3000/api/post'
+    const url = `http://localhost:3000/api/post/${postId}`
     
     return fetch(
         url, 

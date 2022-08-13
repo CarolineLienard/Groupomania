@@ -7,9 +7,8 @@ import { Link } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
 import {remove, likePost} from '../API/post';
 import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
 
-export default function Post({post, refreshPost, userId, index}){
+export default function Post({post, refreshPost, userId, isAdmin}){
     const arrayLikes = post.usersLiked
     const [storage] = useState(JSON.parse(localStorage.getItem('session')))
 
@@ -25,7 +24,7 @@ export default function Post({post, refreshPost, userId, index}){
     }
 
     return(
-       <ImageListItem className="post-card" key={index}>
+       <ImageListItem className="post-card">
             <img 
                 className='post-card__image'
                 alt={'coucou'} 
@@ -48,7 +47,7 @@ export default function Post({post, refreshPost, userId, index}){
                         </div>
                         
                         {
-                            isOwner && (
+                            (isOwner || isAdmin) && (
                                 <div className="more">
                                     <Link to={`/updatePost/${post._id}`}>
                                         <IconButton className="material-icons grey" aria-label="delete" size="small">

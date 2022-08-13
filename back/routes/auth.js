@@ -8,5 +8,8 @@ router.post('/signup', userCtrl.signUp)
 //Login 
 router.post('/login', userCtrl.login)
 
+//Admin
+router.get('/:id', verify, userCtrl.getUser)
+
 
 module.exports = router

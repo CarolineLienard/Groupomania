@@ -51,3 +51,18 @@ exports.login = async (req, res, next) => {
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET )
     res.header('auth-token', token).send({token: token, userId: user._id})
 }
+
+//Admin
+exports.getUser = (req, res, next) => {
+
+     // Find the user ID we want in the DB
+     User.findOne({
+         _id: req.params.id
+     })
+ 
+     // Return the user
+     .then(user => res.status(200).json(user))
+     .catch(error => res.status(404).json({
+     error
+     }));
+ };
