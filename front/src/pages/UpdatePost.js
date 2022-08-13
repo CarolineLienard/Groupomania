@@ -55,7 +55,11 @@ export default function UpdatePost() {
                                 <input hidden accept="image/*" type="file" onChange={handlePicture}/>
                                 <PhotoCamera />
                             </IconButton>
-                            <h1>Cliquez pour télécharger la photo depuis votre appareil</h1>
+                            <h1>
+                                {
+                                    imagePost ? imagePost.name : "Cliquez pour télécharger la photo depuis votre appareil"
+                                }
+                            </h1>
                         </div>
                         <span>Recommandation: Utilisez des fichiers .jpg de haute qualité de moins de 20mo.</span>
                     </div>
@@ -64,8 +68,8 @@ export default function UpdatePost() {
                         id="standard-multiline-static"
                         multiline
                         fullWidth
-                        maxRows={10}
-                        helperText="60 caractères maximum"
+                        maxRows={4}
+                        helperText="160 caractères maximum"
                         placeholder="Commencer votre post"
                         variant="standard"
                         value={post}

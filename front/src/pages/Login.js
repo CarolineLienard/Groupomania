@@ -2,27 +2,46 @@ import { Link, useNavigate } from "react-router-dom"
 import Logo from '../assets/logo.svg'
 import { useState } from "react"
 import { loginUser } from '../API/auth'
+import Snackbar from '@mui/material/Snackbar'
+import Alert from '@mui/material/Alert'
+
+
 
 export default function Login(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [openSnackBar, setOpenSnackBar] = useState(false)
     let navigate = useNavigate()
 
+    function handleSnackBar(){
+        return(
+            <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={() => setOpenSnackBar(false)}>
+                <Alert severity= "error">Veuillez vérifier votre email ou votre mot de passe</Alert>
+            </Snackbar>
+        )
+    }
+
     function handleLogin(){
-        const user = {
-            email: email,
-            password: password
-        }
-        loginUser(user).then(res => {
-            if(res && res.token && res.userId){
-                const userInfo = {
-                    token : res.token,
-                    userId: res.userId
-                }
-                localStorage.setItem('session', JSON.stringify(userInfo));
-                navigate('/homepage')
+        if (email !=="" && password != "") {
+            const user = {
+                email: email,
+                password: password
             }
-        })
+            loginUser(user).then(res => {
+                if(res && res.token && res.userId){
+                    const userInfo = {
+                        token : res.token,
+                        userId: res.userId
+                    }
+                    localStorage.setItem('session', JSON.stringify(userInfo));
+                    navigate('/homepage')
+                } else {
+                    setOpenSnackBar(true)
+                }
+            })
+        } else {
+            setOpenSnackBar(true)
+        }
     }
 
     return(
@@ -50,6 +69,7 @@ export default function Login(){
                 </div>
                 
             </div>
+            {handleSnackBar()}
         </div>
     )
 }

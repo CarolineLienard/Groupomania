@@ -1,19 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Logo from '../assets/logo.svg'
 import { createUser } from '../API/auth'
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
-
 export default function Register(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [openSnackBar, setOpenSnackBar] = useState(false)
-    const [errors, setErrors] = useState("Something wrong")
     let navigate = useNavigate();
-
-
 
     function submitRegisteration(){
         if(email !== "" && password !== ""){
@@ -22,20 +18,21 @@ export default function Register(){
                 password: password
             }
             createUser(user).then((res) => {
-                console.log(res, 'res')
                 if(res && res.message){
                     navigate('/login', { replace: true })
-                }else{
+                } else {
                     setOpenSnackBar(true)
                 }
             }).catch((err) => { console.log(err, 'errors')})
+        } else {
+            setOpenSnackBar(true)
         }
     }
 
     function handleSnackBar(){
         return(
             <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={() => setOpenSnackBar(false)}>
-                <Alert severity= "error">{errors}</Alert>
+                <Alert severity= "error">Veuillez vérifier votre email ou votre mot de passe</Alert>
             </Snackbar>
         )
     }

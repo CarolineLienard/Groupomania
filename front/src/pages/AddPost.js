@@ -7,33 +7,48 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import { useState } from 'react'
 import { addUserPost } from '../API/post'
 import { useNavigate } from "react-router-dom";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
 
 export default function AddPost() {
     const [post, setPost] = useState('')
     const [imagePost, setImagePost] = useState('')
+    const [openSnackBar, setOpenSnackBar] = useState(false)
     let navigate = useNavigate()
 
 
+
+function handleSnackBar(){
+    return(
+        <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={() => setOpenSnackBar(false)}>
+            <Alert severity= "error">Ajoutez une photo et un texte</Alert>
+        </Snackbar>
+    )
+}
+
     function onSubmit () {
         const token = JSON.parse(localStorage.getItem('session'))
-        const data = {
-            userId: token.userId,
-            description: post,
+        if( post!="" && imagePost !="") {
+            const data = {
+                userId: token.userId,
+                description: post,
+            }
+            addUserPost(data, imagePost).then(() => { navigate('/homepage') })
+        } else {
+            setOpenSnackBar(true)
         }
-        addUserPost(data, imagePost).then(() => { navigate('/homepage') })
     }
 
     function handlePicture(e){
         setImagePost(e.target.files[0])
     }
-
-    console.log(imagePost);
     
     return (
         <div>
             <Header />
             <HeaderMobile />
-          
+            {handleSnackBar()}
             <div className='addPost flex column'>
                 
                 <div className='postContent flex'>
@@ -57,8 +72,8 @@ export default function AddPost() {
                     id="standard-multiline-static"
                     multiline
                     fullWidth
-                    maxRows={10}
-                    helperText="60 caractères maximum"
+                    maxRows={4}
+                    helperText="160 caractères maximum"
                     placeholder="Commencer votre post"
                     variant="standard"
                     onChange={(e) => {setPost(e.target.value)}}
