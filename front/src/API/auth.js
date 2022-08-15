@@ -1,3 +1,4 @@
+// Register
 export function createUser(user) {
     const url = 'http://localhost:3000/api/auth/signup' 
     return fetch(
@@ -15,6 +16,7 @@ export function createUser(user) {
             .catch((error) => console.error(error))
 }
 
+//Login
 export function loginUser(user){
     const url = 'http://localhost:3000/api/auth/login' 
     return fetch(

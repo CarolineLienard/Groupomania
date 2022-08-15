@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom"
 export default function Header() {
     let navigate = useNavigate()
 
-
     function logOut(){
         localStorage.clear();
         navigate('/login')

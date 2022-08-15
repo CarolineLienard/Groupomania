@@ -67,7 +67,6 @@ exports.modifyPost = (req, res, next) => {
 
     let postObject = {}
 
-    console.log(req.body, 'body')
     // If there is an image modification
     req.file ? (
 

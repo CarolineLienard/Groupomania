@@ -1,10 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import Logo from '../assets/logo.svg'
-import { createUser } from '../API/auth'
-import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
 
+import { Link, useNavigate } from "react-router-dom"
+import { useState } from "react"
+import { createUser } from '../API/auth'
+
+import Alert from '@mui/material/Alert'
+import Snackbar from '@mui/material/Snackbar'
+
+
+// Register function (to create a user)
 export default function Register(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -58,7 +62,9 @@ export default function Register(){
 
                 <div className="button flex align-center column">
                     <button disabled={email === "" && password === ""} onClick={submitRegisteration}>S'inscrire</button>
-                    <p className="message">Vous avez déjà un compte?<Link to="/login"> Se connecter</Link></p>
+                    <p className="message">Vous avez déjà un compte?
+                        <Link to="/login"> Se connecter</Link>
+                    </p>
                 </div>
             </div>
             {handleSnackBar()}

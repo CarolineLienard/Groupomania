@@ -2,19 +2,22 @@ import Header from '../components/Header'
 import HeaderMobile from '../components/HeaderMobile'
 
 import { useEffect, useState } from 'react'
-import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import { useParams, useNavigate } from "react-router-dom";
-import { updatePost, getOnepost } from '../API/post';
+import { useParams, useNavigate } from "react-router-dom"
+import { updatePost, getOnepost } from '../API/post'
 
+import TextField from '@mui/material/TextField'
+import IconButton from '@mui/material/IconButton'
+import PhotoCamera from '@mui/icons-material/PhotoCamera'
+
+
+// Update post component
 export default function UpdatePost() {
     const { postId } = useParams();
     const [post, setPost] = useState('')
     const [imagePost, setImagePost] = useState(null)
     let navigate = useNavigate()
-
-   // const isOwner = storage.userId === post.userId
+    
+    // const isOwner = storage.userId === post.userId
 
     useEffect(() => {
         getOnepost(postId).then(res => {
@@ -75,11 +78,13 @@ export default function UpdatePost() {
                         value={post}
                         onChange={handleDescription}
                     />
+
                 </div>
             
                 <div className='postButton flex end'>
                     <button onClick={update}>Modifier</button>
-                </div>    
+                </div>   
+
             </div>
         </div>    
     )

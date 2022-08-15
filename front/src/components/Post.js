@@ -1,25 +1,29 @@
-import { useState } from 'react'
-import DeleteIcon from '@mui/icons-material/Delete';
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import Edit from '@mui/icons-material/Edit';
-import { Link } from "react-router-dom";
-import IconButton from '@mui/material/IconButton';
-import {remove, likePost} from '../API/post';
-import ImageListItem from '@mui/material/ImageListItem';
+import DeleteIcon from '@mui/icons-material/Delete'
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp'
+import Edit from '@mui/icons-material/Edit'
+import IconButton from '@mui/material/IconButton'
+import ImageListItem from '@mui/material/ImageListItem'
 
+import { useState } from 'react'
+import { Link } from "react-router-dom"
+import {remove, likePost} from '../API/post'
+
+// Post component
 export default function Post({post, refreshPost, userId, isAdmin}){
     const arrayLikes = post.usersLiked
-    const [storage] = useState(JSON.parse(localStorage.getItem('session')))
+    const [session] = useState(JSON.parse(localStorage.getItem('session')))
+    const isOwner = session.userId === post.userId
 
-    const isOwner = storage.userId === post.userId
-
+    // Function removePost delete a post
     function removePost(){
         remove(post._id).then( () => { refreshPost() })
     }
 
+    // Function handleLike manage like post
     function handleLike (){
-        const isLiked = !arrayLikes.includes(userId)
+        //If user is in arrayLikes = false, false === 0, so -1 like
+        const isLiked = !arrayLikes.includes(userId) // includes return a boolean
         likePost(post._id, userId, isLiked).then( () => { refreshPost() })
     }
 
@@ -27,7 +31,7 @@ export default function Post({post, refreshPost, userId, isAdmin}){
        <ImageListItem className="post-card">
             <img 
                 className='post-card__image'
-                alt={'coucou'} 
+                alt={post.imageUrl} 
                 src={post.imageUrl}
                 srcSet={post.imageUrl}
                 loading="lazy"
@@ -47,14 +51,18 @@ export default function Post({post, refreshPost, userId, isAdmin}){
                         </div>
                         
                         {
-                            (isOwner || isAdmin) && (
+                            (isOwner || isAdmin) && ( // && here = return
                                 <div className="more">
                                     <Link to={`/updatePost/${post._id}`}>
                                         <IconButton className="material-icons grey" aria-label="delete" size="small">
                                             <Edit />
                                         </IconButton>
                                     </Link>
-                                    <IconButton className="material-icons grey" aria-label="delete" size="small" onClick={removePost}>
+                                    <IconButton 
+                                        className="material-icons grey" 
+                                        aria-label="delete" 
+                                        size="small" 
+                                        onClick={removePost}>
                                         <DeleteIcon />
                                     </IconButton>
                                 </div>

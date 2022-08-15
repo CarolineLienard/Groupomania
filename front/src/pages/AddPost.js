@@ -1,22 +1,23 @@
 import Header from '../components/Header'
 import HeaderMobile from '../components/HeaderMobile'
 
-import TextField from '@mui/material/TextField'
-import IconButton from '@mui/material/IconButton'
-import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import { useState } from 'react'
 import { addUserPost } from '../API/post'
 import { useNavigate } from "react-router-dom";
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+
+import TextField from '@mui/material/TextField'
+import IconButton from '@mui/material/IconButton'
+import PhotoCamera from '@mui/icons-material/PhotoCamera'
+import Snackbar from '@mui/material/Snackbar'
+import Alert from '@mui/material/Alert'
 
 
+// Add post component
 export default function AddPost() {
     const [post, setPost] = useState('')
     const [imagePost, setImagePost] = useState('')
     const [openSnackBar, setOpenSnackBar] = useState(false)
     let navigate = useNavigate()
-
 
 
 function handleSnackBar(){
@@ -69,22 +70,23 @@ function handleSnackBar(){
                     </div>
                     
                     <TextField
-                    id="standard-multiline-static"
-                    multiline
-                    fullWidth
-                    maxRows={4}
-                    helperText="160 caractères maximum"
-                    placeholder="Commencer votre post"
-                    variant="standard"
-                    onChange={(e) => {setPost(e.target.value)}}
+                        id="standard-multiline-static"
+                        multiline
+                        fullWidth
+                        maxRows={4}
+                        helperText="160 caractères maximum"
+                        placeholder="Commencer votre post"
+                        variant="standard"
+                        onChange={(e) => {setPost(e.target.value)}}
                     />
+
                 </div>
 
                 <div className='postButton flex end'>
                     <button onClick={onSubmit}>Enregistrer</button>
                 </div>    
-            </div>
 
+            </div>
         </div>    
     )
 }

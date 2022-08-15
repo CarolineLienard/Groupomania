@@ -1,12 +1,14 @@
-import { Link, useNavigate } from "react-router-dom"
 import Logo from '../assets/logo.svg'
+
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { loginUser } from '../API/auth'
+
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
 
 
-
+// Function Login to log a user
 export default function Login(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -65,9 +67,10 @@ export default function Login(){
 
                 <div className="button flex align-center column">
                     <button onClick={handleLogin}>Se connecter</button>
-                    <p className="message">Pas encore de compte?<Link to="/register"> Créez un compte</Link></p>
+                    <p className="message">Pas encore de compte?
+                        <Link to="/register"> Créez un compte</Link>
+                    </p>
                 </div>
-                
             </div>
             {handleSnackBar()}
         </div>

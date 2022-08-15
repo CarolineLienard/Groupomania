@@ -15,6 +15,7 @@ You will need to use Express JS for the back end and React for the front. Your u
 - Create a new post 
 - Update a post 
 - Like a post 
+- Connect to the admin account : admin@admin.fr - admin1234
 
 ### Screenshot
 

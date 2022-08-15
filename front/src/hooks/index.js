@@ -1,7 +1,9 @@
 import {useState, useEffect} from 'react'
 
+// Get the user token from the local storage
 const token = JSON.parse(localStorage.getItem('session'))
 
+// Function useIsAdmin check if the user is an admin
 export function useIsAdmin(id) {
     const [isAdmin, setIsAdmin] = useState(false)
     const url = `http://localhost:3000/api/auth/${id}`
@@ -22,5 +24,4 @@ export function useIsAdmin(id) {
       fetchData()
     }, [url])
     return { isAdmin }
-
 }
